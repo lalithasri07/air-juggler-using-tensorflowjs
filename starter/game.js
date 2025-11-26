@@ -272,6 +272,15 @@ startButton.addEventListener("click", startGame);
 
 // Start checking once DOM is loaded:
 
-
+// Check if TensorFlow.js is loaded
+function checkTensorFlowLoaded() {
+  if (typeof tf !== "undefined" && typeof handPoseDetection !== "undefined") {
+    // TensorFlow.js and dependencies loaded
+    loadingOverlay.classList.add("hidden");
+  } else {
+    // Check again after a short delay
+    setTimeout(checkTensorFlowLoaded, 100);
+  }
+}
 // Initial render
 render();
